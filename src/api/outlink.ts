@@ -44,7 +44,7 @@ export interface OutlinkModifyResponse {
 
 // 创建专门用于外链API的Alova实例
 const OutlinkAlova = createAlova({
-  baseURL: 'http://oasrv.fnji.com:8082',
+  baseURL: 'https://oms8082.fnji.com',
   statesHook: VueHook,
   requestAdapter: adapterFetch(),
   beforeRequest(method) {
