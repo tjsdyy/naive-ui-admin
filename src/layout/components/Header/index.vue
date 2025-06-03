@@ -6,7 +6,7 @@
       v-if="navMode === 'horizontal' || (navMode === 'horizontal-mix' && mixMenu)"
     >
       <div class="logo" v-if="navMode === 'horizontal'">
-        <img :src="websiteConfig.logo" alt="" />
+        <!-- <img :src="websiteConfig.logo" alt="" /> -->
         <h2 v-show="!collapsed" class="title">{{ websiteConfig.title }}</h2>
       </div>
       <AsideMenu
@@ -72,7 +72,7 @@
       </n-breadcrumb>
     </div>
     <div class="layout-header-right">
-      <div
+      <!-- <div
         class="layout-header-trigger layout-header-trigger-min"
         v-for="item in iconList"
         :key="item.icon"
@@ -85,9 +85,9 @@
           </template>
           <span>{{ item.tips }}</span>
         </n-tooltip>
-      </div>
+      </div> -->
       <!--切换全屏-->
-      <div class="layout-header-trigger layout-header-trigger-min">
+      <!-- <div class="layout-header-trigger layout-header-trigger-min">
         <n-tooltip placement="bottom">
           <template #trigger>
             <n-icon size="18">
@@ -96,23 +96,23 @@
           </template>
           <span>全屏</span>
         </n-tooltip>
-      </div>
+      </div> -->
       <!-- 个人中心 -->
       <div class="layout-header-trigger layout-header-trigger-min">
         <n-dropdown trigger="hover" @select="avatarSelect" :options="avatarOptions">
           <div class="avatar">
-            <n-avatar :src="websiteConfig.logo">
-              <template #icon>
+            <!-- <n-avatar :src="websiteConfig.logo"> -->
+              <!-- <template #icon>
                 <UserOutlined />
               </template>
-            </n-avatar>
-            <n-divider vertical />
+            </n-avatar> -->
+            <!-- <n-divider vertical /> -->
             <span>{{ username }}</span>
           </div>
         </n-dropdown>
       </div>
       <!--设置-->
-      <div class="layout-header-trigger layout-header-trigger-min" @click="openSetting">
+      <!-- <div class="layout-header-trigger layout-header-trigger-min" @click="openSetting">
         <n-tooltip placement="bottom-end">
           <template #trigger>
             <n-icon size="18" style="font-weight: bold">
@@ -121,11 +121,11 @@
           </template>
           <span>项目配置</span>
         </n-tooltip>
-      </div>
+      </div> -->
     </div>
   </div>
   <!--项目配置-->
-  <ProjectSetting ref="drawerSetting" />
+  <!-- <ProjectSetting ref="drawerSetting" /> -->
 </template>
 
 <script lang="ts">
@@ -359,7 +359,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0;
-    height: 64px;
+    height: 50px;
     box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
     transition: all 0.2s ease-in-out;
     width: 100%;

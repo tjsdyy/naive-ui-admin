@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/system/menu',
     component: Layout,
     meta: {
-      title: '系统设置',
+      title: '基础信息',
       icon: renderIcon(OptionsSharp),
       sort: 1,
     },
@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
         path: 'menu',
         name: 'system_menu',
         meta: {
-          title: '菜单权限',
+          title: '商品管理',
         },
         component: () => import('@/views/system/menu/menu.vue'),
       },
@@ -27,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
         path: 'role',
         name: 'system_role',
         meta: {
-          title: '角色权限',
+          title: '供应商管理',
         },
         component: () => import('@/views/system/role/role.vue'),
       },

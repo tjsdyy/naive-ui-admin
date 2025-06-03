@@ -76,6 +76,7 @@
       :pagination="pagination"
       @update:page="updatePage"
       @update:page-size="updatePageSize"
+      size="small"
     >
       <template #[item]="data" v-for="item in Object.keys($slots)" :key="item">
         <slot :name="item" v-bind="data"></slot>
@@ -197,7 +198,7 @@
       data: tableData,
       size: unref(getTableSize),
       remote: true,
-      'max-height': maxHeight,
+      //   'max-height': maxHeight,
       title: '', // 重置为空 避免绑定到 table 上面
     };
   });

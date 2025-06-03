@@ -3,9 +3,7 @@
     <div class="view-account-header"></div>
     <div class="view-account-container">
       <div class="view-account-top">
-        <div class="view-account-top-logo">
-          <img :src="websiteConfig.loginImage" alt="" />
-        </div>
+        <div class="view-account-top-logo"></div>
         <div class="view-account-top-desc">{{ websiteConfig.loginDesc }}</div>
       </div>
       <div class="view-account-form">
@@ -54,7 +52,7 @@
               登录
             </n-button>
           </n-form-item>
-          <n-form-item class="default-color">
+          <n-form-item class="default-color" style="display: none">
             <div class="flex view-account-other">
               <div class="flex-initial">
                 <span>其它登录方式</span>
@@ -105,8 +103,8 @@
   const LOGIN_NAME = PageEnum.BASE_LOGIN_NAME;
 
   const formInline = reactive({
-    username: 'admin',
-    password: '123456',
+    username: 'test',
+    password: '123123',
     isCaptcha: true,
   });
 
@@ -140,7 +138,7 @@
             const toPath = decodeURIComponent((route.query?.redirect || '/') as string);
             message.success('登录成功，即将进入系统');
             if (route.name === LOGIN_NAME) {
-              router.replace('/');
+              router.replace('/outlink');
             } else router.replace(toPath);
           } else {
             message.info(msg || '登录失败');

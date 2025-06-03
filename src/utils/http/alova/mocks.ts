@@ -6,5 +6,6 @@ import ConsoleMock from '../../../../mock/dashboard/console';
 import TableMock from '../../../../mock/table/list';
 import SystemMenuMock from '../../../../mock/system/menu';
 import SystemRoleMock from '../../../../mock/system/role';
+import OrderMock from '../../../../mock/order';
 
-export default [UserMock, MenusMock, TableMock, ConsoleMock, SystemMenuMock, SystemRoleMock];
+export default [UserMock, MenusMock, TableMock, ConsoleMock, SystemMenuMock, SystemRoleMock, OrderMock];

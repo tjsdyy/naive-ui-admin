@@ -40,7 +40,7 @@
     </n-drawer>
 
     <n-layout :inverted="inverted">
-      <n-layout-header :inverted="getHeaderInverted" :position="fixedHeader">
+      <n-layout-header v-if="false" :inverted="getHeaderInverted" :position="fixedHeader">
         <PageHeader v-model:collapsed="collapsed" :inverted="inverted" />
       </n-layout-header>
 
@@ -251,7 +251,7 @@
   .layout-content-main {
     margin: 0 10px 10px;
     position: relative;
-    padding-top: 64px;
+    padding-top: 0px;
   }
 
   .layout-content-main-fix {

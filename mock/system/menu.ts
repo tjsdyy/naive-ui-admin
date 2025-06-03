@@ -5,32 +5,32 @@ import type { ListDate } from '@/api/system/menu';
 const menuList = () => {
   const result: ListDate[] = [
     {
-      label: 'Dashboard',
+      label: '首页',
       key: 'dashboard',
       type: 1,
-      subtitle: 'dashboard',
+      subtitle: '首页',
       openType: 1,
       auth: 'dashboard',
       path: '/dashboard',
       children: [
         {
-          label: '主控台',
+          label: '首页',
           key: 'console',
           type: 1,
-          subtitle: 'console',
+          subtitle: '首页',
           openType: 1,
           auth: 'console',
           path: '/dashboard/console',
         },
-        {
-          label: '工作台',
-          key: 'workplace',
-          type: 1,
-          subtitle: 'workplace',
-          openType: 1,
-          auth: 'workplace',
-          path: '/dashboard/workplace',
-        },
+        // {
+        //   label: '工作台',
+        //   key: 'workplace',
+        //   type: 1,
+        //   subtitle: 'workplace',
+        //   openType: 1,
+        //   auth: 'workplace',
+        //   path: '/dashboard/workplace',
+        // },
       ],
     },
     {

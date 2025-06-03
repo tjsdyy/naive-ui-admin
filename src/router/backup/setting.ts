@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/setting/account',
     component: Layout,
     meta: {
-      title: '设置页面',
+      title: '采购管理',
       icon: renderIcon(SettingOutlined),
       sort: 5,
     },
@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
         path: 'account',
         name: 'setting-account',
         meta: {
-          title: '个人设置',
+          title: '采购订单',
         },
         component: () => import('@/views/setting/account/account.vue'),
       },
@@ -27,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
         path: 'system',
         name: 'setting-system',
         meta: {
-          title: '系统设置',
+          title: '采购入库',
         },
         component: () => import('@/views/setting/system/system.vue'),
       },

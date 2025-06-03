@@ -1,27 +1,49 @@
 <template>
-  <NMenu
+
+  <div>
+	<NMenu
     :options="menus"
     :inverted="inverted"
     :mode="mode"
     :collapsed="collapsed"
-    :collapsed-width="64"
     :collapsed-icon-size="20"
     :indent="24"
+    :render-icon="customRenderIcon"
     :expanded-keys="openKeys"
     :value="getSelectedKeys"
     @update:value="clickMenuItem"
     @update:expanded-keys="menuExpanded"
   />
+	<div class="layout-header-trigger bottomout layout-header-trigger-min">
+        <n-dropdown trigger="hover" @select="avatarSelect" :options="avatarOptions">
+          <div class="avatar">
+            <span>退出登录</span>
+          </div>
+        </n-dropdown>
+      </div>
+  </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref, onMounted, reactive, computed, watch, toRefs, unref } from 'vue';
+  import {
+    defineComponent,
+    ref,
+    onMounted,
+    reactive,
+    computed,
+    watch,
+    toRefs,
+    unref,
+    h,
+  } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
+
   import { useAsyncRouteStore } from '@/store/modules/asyncRoute';
   import { generatorMenu, generatorMenuMix } from '@/utils';
   import { useProjectSettingStore } from '@/store/modules/projectSetting';
   import { useProjectSetting } from '@/hooks/setting/useProjectSetting';
-
+  import { useDialog, useMessage } from 'naive-ui';
+  import { useUserStore } from '@/store/modules/user';
   export default defineComponent({
     name: 'AppMenu',
     components: {},
@@ -46,12 +68,15 @@
       // 当前路由
       const currentRoute = useRoute();
       const router = useRouter();
+      const userStore = useUserStore();
+
       const asyncRouteStore = useAsyncRouteStore();
       const settingStore = useProjectSettingStore();
       const menus = ref<any[]>([]);
       const selectedKeys = ref<string>(currentRoute.name as string);
       const headerMenuSelectKey = ref<string>('');
-
+		const message = useMessage();
+		const dialog = useDialog();
       const { navMode } = useProjectSetting();
 
       // 获取当前打开的子菜单
@@ -63,6 +88,7 @@
         openKeys: getOpenKeys,
       });
 
+
       const inverted = computed(() => {
         return ['dark', 'header-dark'].includes(settingStore.navTheme);
       });
@@ -73,6 +99,17 @@
           ? unref(selectedKeys)
           : unref(headerMenuSelectKey);
       });
+
+      // 自定义图标渲染函数
+      function customRenderIcon(option: any) {
+        // 检查是否为一级菜单（有children的菜单项）
+        if (option.children && option.children.length > 0) {
+          // 检查当前菜单是否展开
+          return null;
+        }
+        // 对于没有子菜单的项目，返回原始图标或null
+        return option.icon ? null : null;
+      }
 
       // 监听分割菜单
       watch(
@@ -99,6 +136,48 @@
           updateMenu();
         }
       );
+        const avatarOptions = [
+        {
+          label: '个人设置',
+          key: 1,
+        },
+        {
+          label: '退出登录',
+          key: 2,
+        },
+      ];
+      // 退出登录
+      const doLogout = () => {
+        dialog.info({
+          title: '提示',
+          content: '您确定要退出登录吗',
+          positiveText: '确定',
+          negativeText: '取消',
+          onPositiveClick: () => {
+            userStore.logout().then(() => {
+              message.success('成功退出登录');
+              // 移除标签页
+              router
+                .replace({
+                  name: 'Login'
+                })
+                .finally(() => location.reload());
+            });
+          },
+          onNegativeClick: () => {},
+        });
+      };
+      //头像下拉菜单
+      const avatarSelect = (key) => {
+        switch (key) {
+          case 1:
+            router.push({ name: 'Setting' });
+            break;
+          case 2:
+            doLogout();
+            break;
+        }
+      };
 
       function updateSelectedKeys() {
         const matched = currentRoute.matched;
@@ -157,13 +236,24 @@
       return {
         ...toRefs(state),
         inverted,
+        avatarSelect,
+        avatarOptions,
         menus,
         selectedKeys,
         headerMenuSelectKey,
         getSelectedKeys,
+        customRenderIcon,
         clickMenuItem,
         menuExpanded,
       };
     },
   });
 </script>
+
+<style lang="less" scoped>
+.bottomout {
+  position: absolute;
+  bottom: 10px;
+  left:  10px;
+}
+</style>
