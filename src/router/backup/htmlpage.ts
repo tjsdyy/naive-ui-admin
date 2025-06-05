@@ -11,6 +11,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Layout,
     meta: {
       title: '操作指导',
+	  keepAlive: true,
       icon: renderIcon(CodeOutlined),
       sort: 6,
     },
@@ -20,6 +21,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'htmlpage_content',
         meta: {
           title: '操作指导',
+		  keepAlive: true,
         },
         component: () => import('@/views/htmlpage/index.vue'),
       },

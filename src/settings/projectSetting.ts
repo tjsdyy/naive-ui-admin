@@ -32,7 +32,7 @@ const setting = {
     //菜单宽度
     menuWidth: 200,
     //固定菜单
-    fixed: false,
+    fixed: true,
     //分割菜单
     mixMenu: false,
     //触发移动端侧边栏的宽度
@@ -43,7 +43,7 @@ const setting = {
   //面包屑
   crumbsSetting: {
     //是否显示
-    show: true,
+    show: false,
     //显示图标
     showIcon: false,
   },

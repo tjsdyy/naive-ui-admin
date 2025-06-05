@@ -22,6 +22,16 @@ const routes: Array<RouteRecordRaw> = [
           title: '外链管理',
         },
         component: () => import('@/views/outlink/index.vue'),
+		
+      },
+	  {
+        path: 'content',
+        name: 'htmlpage_content',
+        meta: {
+          title: '操作指导',
+		  keepAlive: true,
+        },
+        component: () => import('@/views/htmlpage/index.vue'),
       },
     ],
   },

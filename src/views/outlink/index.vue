@@ -244,13 +244,14 @@
       filter: filter,
       orderBy: orderBy,
     });
+    console.log('response', response);
     return {
-      list: response.data.tableData,
-      page: response.data.pageInfo.page,
-      pageSize: response.data.pageInfo.limit,
-      pageCount: response.data.pageInfo.totalPage,
-      itemCount: response.data.pageInfo.total,
-      total: response.data.pageInfo.total,
+      list: response.tableData,
+      page: response.pageInfo.page,
+      pageSize: response.pageInfo.limit,
+      pageCount: response.pageInfo.totalPage,
+      itemCount: response.pageInfo.total,
+      total: response.pageInfo.total,
     };
   };
 

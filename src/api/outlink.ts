@@ -1,6 +1,7 @@
 import { createAlova } from 'alova';
 import VueHook from 'alova/vue';
 import adapterFetch from 'alova/fetch';
+import { Alova } from '@/utils/http/alova';
 
 export interface OutlinkItem {
   id: number;
@@ -14,20 +15,17 @@ export interface OutlinkItem {
 }
 
 export interface OutlinkListResponse {
-  error: number;
-  data: {
-    tableData: OutlinkItem[];
-    pageInfo: {
-      page: number;
-      prePage: number;
-      nextPage: number;
-      limit: number;
-      totalPage: number;
-      total: number;
-    };
-    sum: Record<string, any>;
-    lastSync: any;
+  tableData: OutlinkItem[];
+  pageInfo: {
+    page: number;
+    prePage: number;
+    nextPage: number;
+    limit: number;
+    totalPage: number;
+    total: number;
   };
+  sum: Record<string, any>;
+  lastSync: any;
 }
 
 export interface OutlinkDetailResponse {
@@ -57,12 +55,12 @@ const OutlinkAlova = createAlova({
   responded: {
     onSuccess: async (response: any, method) => {
       const res = await response.json();
-      
+
       // 直接返回响应数据，不进行额外处理
       if (method.meta?.isTransformResponse === false) {
         return res;
       }
-      
+
       // 检查响应状态
       if (res.error === 0) {
         return res;
@@ -83,16 +81,23 @@ const OutlinkAlova = createAlova({
 });
 
 // 获取外链列表
-export const getOutlinkList = (params: { page: number; limit: number; filter?: string; orderBy?: string }) => {
-  return OutlinkAlova.Get<OutlinkListResponse>('/mt/s/OutlinkDirModel/getListPageQ', {
-    params: {
-      data: JSON.stringify(params),
-    },
-    cacheFor: 0, // 禁用缓存
-    meta: {
-      isTransformResponse: false,
-    },
-  });
+export const getOutlinkList = (params: {
+  page: number;
+  limit: number;
+  filter?: string;
+  orderBy?: string;
+}) => {
+  const newRequestParams = { data: JSON.stringify(params) };
+  return Alova.Post<OutlinkListResponse>(
+    'https://oms8082.fnji.com/mt/s/OutlinkDirModel/getListPageQ',
+    newRequestParams,
+    {
+      meta: {
+        isTransformResponse: false,
+        cache: false,
+      },
+    }
+  );
 };
 
 // 获取外链详情
@@ -139,4 +144,4 @@ export const addOutlink = (data: Omit<OutlinkItem, 'id' | 'addTime'>) => {
       isTransformResponse: false,
     },
   });
-}; 
+};

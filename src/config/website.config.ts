@@ -5,5 +5,5 @@ export const websiteConfig = Object.freeze({
   title: 'GenBit-SEO',
   logo: logoImage,
   loginImage: loginImage,
-  loginDesc: 'GoSea',
+  loginDesc: 'GenBit-SEO',
 });

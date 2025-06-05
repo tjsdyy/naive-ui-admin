@@ -18,6 +18,9 @@
     >
       <Logo :collapsed="collapsed" />
       <AsideMenu v-model:collapsed="collapsed" v-model:location="getMenuLocation" />
+
+
+
     </n-layout-sider>
 
     <n-drawer
@@ -88,7 +91,6 @@
   import { useDesignSetting } from '@/hooks/setting/useDesignSetting';
   import { useRoute } from 'vue-router';
   import { useProjectSettingStore } from '@/store/modules/projectSetting';
-
   const { getDarkTheme } = useDesignSetting();
   const {
     // showFooter,
@@ -180,6 +182,9 @@
     checkMobileMode();
   };
 
+  function handleMenuCollapsed() {
+    collapsed.value = !collapsed.value;
+  }
   onMounted(() => {
     checkMobileMode();
     window.addEventListener('resize', watchWidth);

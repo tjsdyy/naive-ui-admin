@@ -15,6 +15,7 @@
         :inverted="getInverted"
         mode="horizontal"
       />
+
     </div>
     <!--左侧菜单-->
     <div class="layout-header-left" v-else>
@@ -375,7 +376,6 @@
         justify-content: center;
         height: 64px;
         line-height: 64px;
-        overflow: hidden;
         white-space: nowrap;
         padding-left: 10px;
 
